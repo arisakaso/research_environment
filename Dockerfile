@@ -1,5 +1,5 @@
 # ベースイメージを指定
-FROM nvcr.io/nvidia/pytorch:23.03-py3
+FROM nvcr.io/nvidia/pytorch:22.07-py3
 
 # 必要なパッケージをインストール
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -10,15 +10,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     unzip 
 
-RUN pip install --upgrade pip
+# RUN conda install -c conda-forge pytorch-lightning=1.5.10 wandb black -y
+# RUN conda install seaborn -y
+RUN pip install lightning black wandb
 
-RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
-RUN apt-get install software-properties-common -y
-RUN add-apt-repository ppa:fenics-packages/fenics -y
-RUN apt-get update
-RUN apt-get install fenics -y
+# fenicsx or fenics
+# RUN conda install -c conda-forge fenics-dolfinx=0.6.0 mpich pyvista -y
+RUN conda install -c conda-forge fenics -y
 
-RUN pip install pytorch-lightning wandb
+RUN conda install -c conda-forge gmsh meshio python-gmsh -y
+RUN apt-get install libglu1-mesa libxinerama1 -y
 
 # gitの設定
 ARG GIT_NAME="Your Name"
