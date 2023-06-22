@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # RUN conda install -c conda-forge pytorch-lightning=1.5.10 wandb black -y
 # RUN conda install seaborn -y
-RUN pip install lightning black wandb
+RUN pip install lightning black wandb hydra-core
 
 # fenicsx or fenics
 # RUN conda install -c conda-forge fenics-dolfinx=0.6.0 mpich pyvista -y
