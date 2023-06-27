@@ -32,5 +32,6 @@ WORKDIR /workspace
 # Tunnel 設定
 RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz
 RUN tar -xf vscode_cli.tar.gz
+RUN rm vscode_cli.tar.gz
 
 # RUN ./code tunnel --accept-server-license-terms
